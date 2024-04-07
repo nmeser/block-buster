@@ -4,6 +4,7 @@ kind: GitRepository
 metadata:
   name: 2-demo
   namespace: flux-system
+  app: test
 spec:
   interval: 1m0s
   ref:
