@@ -1,42 +1,47 @@
 export GITHUB_TOKEN=<my-token>
 
 flux bootstrap github \
- --owner=nmeser \
- --repository=bb-app-source \
- --branch=2-demo \
- --path=flux-cluster/dev-cluster
-
---------
-
-flux bootstrap github \
 --token-auth \
 --owner=nmeser \
 --repository=block-buster\
 --path=flux-cluster/dev-cluster \
---personal=true
+--personal=true \
+--private=true
 
 
 
 
-  ####  Create external repo source for flux
+####  Create external repo source for flux
 
-flux create source git flux-system \
+flux create source git 2-demo \
   --url=https://github.com/nmeser/bb-app-source \
   --username=nmeser \
-  --password="XXX" \
-  --branch=3-demo \
-  --ignore-paths="clusters/**/flux-system/"
+  --password="xxx" \
+  --branch=2-demo \
+  --ignore-paths="clusters/**/flux-system/" \
+  --export > 2-demo-source.yml
 
-   ####  Create kustomize for flux
+ ####  Create kustomize for flux
    
 
-flux create kustomization bb-app \
---source GitRepository/flux-system \
+flux create kustomization 2-demo \
+--source GitRepository/2-demo \
 --prune true \
 --interval 10s \
 --target-namespace 2-demo\
 --path manifests  \
 --export > flux-demo-kustomize-git-bb-app.yml 
+
+
+### helmrelease for flux
+
+flux create helmrelease 5-demo \
+--chart helm-chart \
+--interval 10s \
+--target-namespace 5-demo \
+--source GitRepository/5-demo \
+--values 5-demo-values.yml \
+--export > 5-demo-helm.yml
 
 
 ## Stucking Namespace :
