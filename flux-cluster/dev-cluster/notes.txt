@@ -1,0 +1,44 @@
+export GITHUB_TOKEN=<my-token>
+
+flux bootstrap github \
+ --owner=nmeser \
+ --repository=bb-app-source \
+ --branch=2-demo \
+ --path=flux-cluster/dev-cluster
+
+--------
+
+flux bootstrap github \
+--token-auth \
+--owner=nmeser \
+--repository=bb-app-source\
+--branch=2-demo \
+--path=flux-cluster/dev-cluster \
+--personal=true
+
+
+
+
+  ####  Create external repo source for flux
+
+flux create source git flux-system \
+  --url=https://github.com/nmeser/bb-app-source \
+  --username=nmeser \
+  --password="XXX" \
+  --branch=3-demo \
+  --ignore-paths="clusters/**/flux-system/"
+
+   ####  Create kustomize for flux
+   
+
+flux create kustomization bb-app \
+--source GitRepository/flux-system \
+--prune true \
+--interval 10s \
+--target-namespace 2-demo\
+--path manifests  \
+--export > flux-demo-kustomize-git-bb-app.yml 
+
+
+## Stucking Namespace :
+NS=`kubectl get ns |grep Terminating | awk 'NR==1 {print $1}'` && kubectl get namespace "$NS" -o json   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/"   | kubectl replace --raw /api/v1/namespaces/$NS/finalize -f -
