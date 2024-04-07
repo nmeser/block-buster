@@ -11,8 +11,7 @@ flux bootstrap github \
 flux bootstrap github \
 --token-auth \
 --owner=nmeser \
---repository=bb-app-source\
---branch=2-demo \
+--repository=block-buster\
 --path=flux-cluster/dev-cluster \
 --personal=true
 
