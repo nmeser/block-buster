@@ -10,4 +10,4 @@ spec:
     branch: 8-demo
   secretRef:
     name: 8-demo
-  url: ssh://git@github.com/nmeser/block-buster.git
+  url: ssh://git@github.com/nmeser/bb-app-source.git

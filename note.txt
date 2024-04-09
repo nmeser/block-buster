@@ -18,7 +18,7 @@ flux create secret git 8-demo \
 ####  Create external repo source for flux
 
 flux create source git 8-demo \
-  --url=ssh://git@github.com/nmeser/block-buster.git \
+  --url=ssh://git@github.com/nmeser/bb-app-source.git \
   --branch=8-demo \
   --secret-ref 8-demo \
   --timeout=10s \
