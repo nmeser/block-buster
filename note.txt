@@ -1,5 +1,15 @@
 export GITHUB_TOKEN=<my-token>
 
+## bootstrap with ssh
+
+flux bootstrap git \
+--url=ssh://git@github.com/nmeser/block-buster.git \
+--private-key-file=/home/nezih/.ssh/id_rsa \
+--path=flux-cluster/dev-cluster \
+--components-extra="image-reflector-controller,image-automation-controller"
+
+## bootstrap with https
+
 flux bootstrap github \
 --token-auth \
 --owner=nmeser \
@@ -9,23 +19,21 @@ flux bootstrap github \
 --private=true \
 --components-extra="image-reflector-controller,image-automation-controller"
 
+### add source with ssh and secret
 
 flux create secret git 8-demo \
 --url=ssh://git@github.com/nmeser/block-buster.git \
 --ssh-key-algorithm=ecdsa \
 --ssh-ecdsa-curve=p521
 
-####  Create external repo source for flux
-
-flux create source git 8-demo \
+flux create source git 8-demo-source \
   --url=ssh://git@github.com/nmeser/bb-app-source.git \
   --branch=8-demo \
   --secret-ref 8-demo \
   --timeout=10s \
   --export > 8-demo-source.yml
 
- ####  Create kustomize for flux
-   
+ ####  Create kustomize for flux   
 
 flux create kustomization 8-demo \
 --source GitRepository/8-demo \
