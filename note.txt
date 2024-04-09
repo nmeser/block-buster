@@ -88,11 +88,11 @@ kubectl create secret docker-registry regcred -n flux-system  \
 ## image updater
 
 flux create image update 8-demo-update \
---git-repo-ref 8-demo \
+--git-repo-ref 8-demo-source \
 --checkout-branch 8-demo \
 --author-name nezih-robot \
 --author-email flffl@gmail.com \
---git-repo-path ./manifest \
+--git-repo-path ./manifests \
 --push-branch 8-demo \
 --interval 10s \
 --export > 8-demo-image-update.yml
