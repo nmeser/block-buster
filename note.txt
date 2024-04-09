@@ -14,7 +14,7 @@ flux bootstrap github \
 
 ####  Create external repo source for flux
 
-flux create source git 2-demo \
+flux create source git 8-demo \
   --url=https://github.com/nmeser/bb-app-source \
   --username=nmeser \
   --password="xxx" \
@@ -31,7 +31,7 @@ flux create kustomization 8-demo \
 --interval 10s \
 --target-namespace 2-demo\
 --path manifests  \
---export > flux-demo-kustomize-git-bb-app.yml 
+--export > 8-demo-kustomize.yml 
 
 
 ### helmrelease for flux
