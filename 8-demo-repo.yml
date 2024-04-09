@@ -1,0 +1,9 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: 8-demo-repo
+  namespace: flux-system
+spec:
+  image: acrinspirationtechittdev.azurecr.io/nezih-test
+  interval: 10s

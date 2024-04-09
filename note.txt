@@ -36,7 +36,7 @@ flux create source git 8-demo-source \
  ####  Create kustomize for flux   
 
 flux create kustomization 8-demo \
---source GitRepository/8-demo-source \
+-source GitRepository/8-demo-source \
 --prune true \
 --interval 10s \
 --target-namespace 8-demo\
