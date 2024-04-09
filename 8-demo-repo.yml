@@ -6,4 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   image: acrinspirationtechittdev.azurecr.io/nezih-test
-  interval: 10s
+  interval: 1m0s
+  secretRef:
+    name: regcred

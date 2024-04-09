@@ -57,3 +57,19 @@ flux create helmrelease 5-demo \
 
 ## Stucking Namespace :
 NS=`kubectl get ns |grep Terminating | awk 'NR==1 {print $1}'` && kubectl get namespace "$NS" -o json   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/"   | kubectl replace --raw /api/v1/namespaces/$NS/finalize -f -
+
+### image repository
+
+az acr credential show -n acrinspirationtechittdev
+
+kubectl create secret docker-registry regcred \
+ --docker-server=acrinspirationtechittdev.azurecr.io \
+ --docker-username=acrinspirationtechittdev \
+ --docker-password="XXX"
+
+
+ flux create image repository 8-demo-repo \
+ --image acrinspirationtechittdev.azurecr.io/nezih-test \
+ --interval 10s \
+ --secret-ref=regcred \ 
+ --export > 8-demo-repo.yml
