@@ -18,7 +18,7 @@ spec:
   interval: 10s
   sourceRef:
     kind: GitRepository
-    name: 8-demo
+    name: 8-demo-source
   update:
     path: ./manifest
     strategy: Setters
