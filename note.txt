@@ -73,3 +73,5 @@ kubectl create secret docker-registry regcred -n flux-system  \
  --interval 10s \
  --secret-ref=regcred \ 
  --export > 8-demo-repo.yml
+
+  flux get images all
