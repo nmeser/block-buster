@@ -10,17 +10,19 @@ flux bootstrap github \
 --components-extra="image-reflector-controller,image-automation-controller"
 
 
-
+flux create secret git 8-demo \
+--url=ssh://git@github.com/nmeser/block-buster.git \
+--ssh-key-algorithm=ecdsa \
+--ssh-ecdsa-curve=p521
 
 ####  Create external repo source for flux
 
 flux create source git 8-demo \
-  --url=https://github.com/nmeser/bb-app-source \
-  --username=nmeser \
-  --password="xxx" \
-  --branch=2-demo \
-  --ignore-paths="clusters/**/flux-system/" \
-  --export > 2-demo-source.yml
+  --url=ssh://git@github.com/nmeser/block-buster.git \
+  --branch=8-demo \
+  --secret-ref 8-demo \
+  --timeout=10s \
+  --export > 8-demo-source.yml
 
  ####  Create kustomize for flux
    
