@@ -72,6 +72,6 @@ kubectl create secret docker-registry regcred -n flux-system  \
  --image acrinspirationtechittdev.azurecr.io/nezih-test \
  --interval 10s \
  --secret-ref=regcred \ 
- --export > 8-demo-repo.yml
+ --export > 8-demo-image-repo.yml
 
   flux get images all
