@@ -22,7 +22,7 @@ flux bootstrap github \
 ### add source with ssh and secret
 
 flux create secret git 8-demo \
---url=ssh://git@github.com/nmeser/block-buster.git \
+--url=ssh://git@github.com/nmeser/bb-app-source.git \
 --ssh-key-algorithm=ecdsa \
 --ssh-ecdsa-curve=p521
 
