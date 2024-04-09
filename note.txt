@@ -74,4 +74,25 @@ kubectl create secret docker-registry regcred -n flux-system  \
  --secret-ref=regcred \ 
  --export > 8-demo-image-repo.yml
 
+## image policy
+
+ flux create image policy 8-demo-policy \
+--image-ref=8-demo-repo \
+--select-semver 7.8.x \
+--export > 8-demo-image-policy.yml
+
   flux get images all
+  flux get image repository
+  flux get image policy
+
+## image updater
+
+flux create image update 8-demo-update \
+--git-repo-ref 8-demo \
+--checkout-branch 8-demo \
+--author-name nezih-robot \
+--author-email flffl@gmail.com \
+--git-repo-path ./manifest \
+--push-branch 8-demo \
+--interval 10s \
+--export > 8-demo-image-update.yml
