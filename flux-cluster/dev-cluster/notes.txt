@@ -25,8 +25,8 @@ flux create source git 2-demo \
  ####  Create kustomize for flux
    
 
-flux create kustomization 2-demo \
---source GitRepository/2-demo \
+flux create kustomization 8-demo \
+--source GitRepository/8-demo \
 --prune true \
 --interval 10s \
 --target-namespace 2-demo\
