@@ -7,5 +7,3 @@ metadata:
 spec:
   image: docker.io/nmeser/nezih-test
   interval: 10s
-  secretRef:
-    name: doccred
