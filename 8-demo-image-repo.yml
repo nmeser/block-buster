@@ -6,6 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   image: nezih-test
-  interval: 1m0s
+  interval: 10s
   secretRef:
     name: doccred
