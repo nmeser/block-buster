@@ -8,4 +8,4 @@ spec:
   image: nezih-test
   interval: 1m0s
   secretRef:
-    name: regcred
+    name: doccred
