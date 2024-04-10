@@ -5,7 +5,7 @@ metadata:
   name: 8-demo-repo
   namespace: flux-system
 spec:
-  image: nezih-test
+  image: docker.io/nmeser/nezih-test
   interval: 10s
   secretRef:
     name: doccred
