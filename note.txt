@@ -96,3 +96,21 @@ flux create image update 8-demo-update \
 --push-branch 8-demo \
 --interval 10s \
 --export > 8-demo-image-update.yml
+
+## Webhook receiver
+
+kubectl -n flux-system expose deployment notification-controller \
+--name receiver \
+--port 80 \
+--type LoadBalancer
+
+
+k -n flux-system create secret generic github-webhook-token \
+--from-literal=token=secret-token-dont-share
+
+flux create receiver github-webhook-receiver \      
+--type github \
+--event ping,push \
+--secret-ref github-webhook-token \
+--resource GitRepository/8-demo-source \
+--export > 8-demo-receiver.yml
